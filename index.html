@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ByteSize News</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <!-- ================= AUTH MODAL ================= -->
+  <div class="auth-modal" id="authModal">
+    <div class="auth-box">
+
+      <button class="modal-close" onclick="closeModal()" title="Close">&times;</button>
+
+      <div class="auth-mark">📰</div>
+
+      <h2 id="formTitle">Sign Up</h2>
+      <p class="form-subtitle" id="formSubtitle">Create your account to continue</p>
+
+      <form id="authForm">
+        <input type="email" id="email" placeholder="Email address" required>
+        <input type="password" id="password" placeholder="Password" required>
+
+        <ul id="passwordRules">
+          <li id="rule-length">❌ At least 8 characters</li>
+          <li id="rule-uppercase">❌ One uppercase letter</li>
+          <li id="rule-number">❌ One number</li>
+        </ul>
+
+        <button class="submit-btn" type="submit">Sign Up</button>
+      </form>
+
+      <div id="otpSection" style="display:none;">
+        <p class="otp-hint">📬 Check your inbox for the OTP</p>
+        <input type="text" id="otpInput" placeholder="Enter 4-digit OTP">
+        <button id="verifyOtp">Verify &amp; Create Account</button>
+      </div>
+
+      <!-- FORGOT PASSWORD -->
+      <div id="forgotSection" style="display:none;">
+
+        <div id="fp-email">
+          <input type="email" id="resetEmail" placeholder="Enter your email">
+          <button class="reset-password">Send OTP</button>
+        </div>
+
+        <div id="fp-otp" style="display:none;">
+          <p class="otp-hint">📬 Enter the OTP sent to your email</p>
+          <input type="text" id="resetOtp" placeholder="Enter OTP">
+          <button class="verify_otp">Verify OTP</button>
+        </div>
+
+        <div id="fp-password" style="display:none;">
+          <input type="password" id="newPassword" placeholder="New password">
+          <button class="reset_password">Reset Password</button>
+        </div>
+
+      </div>
+
+      <p class="toggle-text">
+        Already have an account?
+        <span onclick="toggleForm()">Login</span>
+      </p>
+
+      <p id="forgotPassword" onclick="forgotPassword()" style="display:none; cursor:pointer;">
+        Forgot Password?
+      </p>
+
+    </div>
+  </div>
+
+
+
+  <!-- DASHBOARD -->
+  <div id="dashboard" class="dashboard hidden">
+
+  <div class="dash-brand">
+    <div class="dash-brand-left">
+      <div class="dash-brand-icon">📰</div>
+      <h3>ByteSize</h3>
+    </div>
+    <button class="dash-close" onclick="closeDashboard()">✕</button>
+  </div>
+
+  <div id="dashboardMessage"></div>
+
+  <div id="dashboardContent" style="display:none; flex:1; flex-direction:column; overflow:hidden;">
+    <div class="dash-user">
+      <div class="dash-avatar">👤</div>
+      <div class="dash-user-info">
+        <div class="dash-user-label">Signed in as</div>
+        <div id="userEmail">loading...</div>
+      </div>
+    </div>
+    <div class="dash-section-title">Saved Articles</div>
+    <div class="dash-body">
+      <div id="savedArticles"></div>
+    </div>
+    <div class="dash-footer">
+      <button id="logoutBtn">🚪 Logout</button>
+    </div>
+  </div>
+
+</div>
+  <!-- ================= MAIN APP ================= -->
+   <div class="dashboard-overlay" id="dashboardOverlay" onclick="closeDashboard()"></div>
+  <div id="newsContainer">
+
+    <header class="navbar">
+      <div class="nav-left">
+        <button id="menuBtn" onclick="hamburger()">☰</button>
+        <h2>Byte<span class="accent">Size</span> News</h2>
+      </div>
+
+      <div class="nav-right">
+        <select id="Language">
+          <option value="en">EN</option>
+          <option value="hi">HI</option>
+          <option value="mr">MR</option>
+          <option value="pa">PA</option>
+        </select>
+        <button id="loginBtn">Login</button>
+      </div>
+    </header>
+
+    <section class="search-section">
+      <input type="text" id="searchInput" placeholder="Search news (tech, sports, business...)" />
+      <button id="searchBtn">🔍</button>
+    </section>
+
+    <div class="search-chips">
+      <span class="chip" onclick="quickSearch('technology')">💻 Tech</span>
+      <span class="chip" onclick="quickSearch('sports')">⚽ Sports</span>
+      <span class="chip" onclick="quickSearch('business')">📈 Business</span>
+      <span class="chip" onclick="quickSearch('health')">🏥 Health</span>
+      <span class="chip" onclick="quickSearch('science')">🔬 Science</span>
+    </div>
+
+    <main id="news-container"></main>
+
+    <footer>
+      <p>© 2025 ByteSize News by Roshan Gupta</p>
+    </footer>
+
+  </div>
+
+  <script src="script.js" defer></script>
+</body>
+
+</html>
