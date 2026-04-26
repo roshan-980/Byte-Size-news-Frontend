@@ -596,7 +596,7 @@ async function loadnews(topic, country, lang) {
                 const res = await fetch(`${BASE_URL}/ai`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ content: article.content || article.title })
+                    body: JSON.stringify({ content: article.content || article.title , lang: lang })
                 });
                 const data = await res.json();
                 summaryBox.innerText = data.summary;
