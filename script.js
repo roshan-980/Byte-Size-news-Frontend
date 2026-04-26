@@ -188,8 +188,7 @@ async function loadDashboard() {
 document.getElementById("logoutBtn").addEventListener("click", async () => {
     const res = await fetch(`${BASE_URL}/auth/logout`, {
         credentials: "include",
-        method: "POST",
-        credentials: "include"
+        method: "POST"
     });
     if (!res.ok) {
         return alert("Logout failed");
@@ -321,6 +320,7 @@ document.getElementById("verifyOtp").addEventListener("click", async () => {
 
     const res = await fetch(`${BASE_URL}/otp/verify`, {
         method: "POST",
+        credentials: "include",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: tempEmail, otp })
     });
@@ -376,10 +376,10 @@ form.addEventListener("submit", async (e) => {
     if (!email || !password) return alert("Fill all fields");
 
     btn.disabled = true;
-
     if (isLogin) {
         const res = await fetch(`${BASE_URL}/auth/login`, {
             method: "POST",
+            credentials: "include",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ email, password })
         });
