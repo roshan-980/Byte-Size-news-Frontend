@@ -546,26 +546,27 @@ async function loadnews(topic, country, lang) {
 
                 // CASE 2: External TTS
                 try {
-                    const ttsRes = await fetch(`${BASE_URL}/tts`, {
-                        method: "POST",
-                        headers: { "Content-Type": "application/json" },
-                        body: JSON.stringify({ text: summaryText, voiceid: "JBFqnCBsd6RMkjVDRZzb" })
-                    });
-                    const audioBlob = await ttsRes.blob();
-                    const audioUrl = URL.createObjectURL(audioBlob);
-                    currentAudio = new Audio(audioUrl);
-                    currentAudio.onended = () => {
-                        isSpeaking = false;
-                        listenBtn.disabled = false;
-                        stopBtn.disabled = true;
-                        currentAudio = null;
-                    };
-                    currentAudio.play();
+                    alert("Current version is not able to play audio. We are working on it and it will be available in the next update. Stay tuned!");
+                //     const ttsRes = await fetch(`${BASE_URL}/tts`, {
+                //         method: "POST",
+                //         headers: { "Content-Type": "application/json" },
+                //         body: JSON.stringify({ text: summaryText, voiceid: "JBFqnCBsd6RMkjVDRZzb" })
+                //     });
+                //     const audioBlob = await ttsRes.blob();
+                //     const audioUrl = URL.createObjectURL(audioBlob);
+                //     currentAudio = new Audio(audioUrl);
+                //     currentAudio.onended = () => {
+                //         isSpeaking = false;
+                //         listenBtn.disabled = false;
+                //         stopBtn.disabled = true;
+                //         currentAudio = null;
+                //     };
+                //     currentAudio.play();
                 } catch (err) {
                     isSpeaking = false;
                     listenBtn.disabled = false;
                     stopBtn.disabled = true;
-                }
+                 }
             });
 
             // ---- Stop ----
