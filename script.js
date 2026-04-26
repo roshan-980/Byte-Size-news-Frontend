@@ -1,4 +1,6 @@
-const BASE_URL = "http://localhost:5000";
+const BASE_URL = "https://byte-size-news-backend.onrender.com";
+console.log("script loading");
+console.log("base url:", BASE_URL  );
 const news = document.getElementById("newsContainer");
 const modal = document.getElementById("authModal");
 const form = document.getElementById("authForm");
