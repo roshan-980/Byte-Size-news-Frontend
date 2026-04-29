@@ -1,6 +1,6 @@
 const BASE_URL = "https://byte-size-news-backend.onrender.com";
 console.log("script loading");
-console.log("base url:", BASE_URL  );
+console.log("base url:", BASE_URL);
 const news = document.getElementById("newsContainer");
 const modal = document.getElementById("authModal");
 const form = document.getElementById("authForm");
@@ -10,6 +10,11 @@ const button = form.querySelector("button");
 const btn = form.querySelector(".submit-btn");
 const toggleText = document.querySelector(".toggle-text");
 const passwordRules = document.getElementById("passwordRules");
+
+const savedLang = localStorage.getItem("language");
+    if (savedLang) {
+        document.getElementById("Language").value = savedLang;
+    }
 
 let currentStep = "form";
 let tempEmail = "";
@@ -205,8 +210,8 @@ function closeModal() {
 }
 
 // ================= LOGIN MODAL =================
-document.getElementById("loginBtn").addEventListener("click", async() => {
-    const res  = await fetch(`${BASE_URL}/auth/verifytoken`, { credentials: "include" });
+document.getElementById("loginBtn").addEventListener("click", async () => {
+    const res = await fetch(`${BASE_URL}/auth/verifytoken`, { credentials: "include" });
     if (res.ok) {
         alert("You are already logged in!");
         return;
@@ -552,26 +557,26 @@ async function loadnews(topic, country, lang) {
                 // CASE 2: External TTS
                 try {
                     alert("Currently not available !");
-                //     const ttsRes = await fetch(`${BASE_URL}/tts`, {
-                //         method: "POST",
-                //         headers: { "Content-Type": "application/json" },
-                //         body: JSON.stringify({ text: summaryText, voiceid: "JBFqnCBsd6RMkjVDRZzb" })
-                //     });
-                //     const audioBlob = await ttsRes.blob();
-                //     const audioUrl = URL.createObjectURL(audioBlob);
-                //     currentAudio = new Audio(audioUrl);
-                //     currentAudio.onended = () => {
-                //         isSpeaking = false;
-                //         listenBtn.disabled = false;
-                //         stopBtn.disabled = true;
-                //         currentAudio = null;
-                //     };
-                //     currentAudio.play();
+                    //     const ttsRes = await fetch(`${BASE_URL}/tts`, {
+                    //         method: "POST",
+                    //         headers: { "Content-Type": "application/json" },
+                    //         body: JSON.stringify({ text: summaryText, voiceid: "JBFqnCBsd6RMkjVDRZzb" })
+                    //     });
+                    //     const audioBlob = await ttsRes.blob();
+                    //     const audioUrl = URL.createObjectURL(audioBlob);
+                    //     currentAudio = new Audio(audioUrl);
+                    //     currentAudio.onended = () => {
+                    //         isSpeaking = false;
+                    //         listenBtn.disabled = false;
+                    //         stopBtn.disabled = true;
+                    //         currentAudio = null;
+                    //     };
+                    //     currentAudio.play();
                 } catch (err) {
                     isSpeaking = false;
                     listenBtn.disabled = false;
                     stopBtn.disabled = true;
-                 }
+                }
             });
 
             // ---- Stop ----
@@ -602,7 +607,7 @@ async function loadnews(topic, country, lang) {
                 const res = await fetch(`${BASE_URL}/ai`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ content: article.content || article.title , lang: lang })
+                    body: JSON.stringify({ content: article.content || article.title, lang: lang })
                 });
                 const data = await res.json();
                 summaryBox.innerText = data.summary;
@@ -623,5 +628,12 @@ async function loadnews(topic, country, lang) {
         </div>`;
     }
 }
+const languageSelect = document.getElementById("Language");
+languageSelect.addEventListener("change", function () {
+    const selectedLang = this.value;
+    // Save in localStorage
+    localStorage.setItem("lang", selectedLang);
+    loadnews("breaking-news", "in", selectedLang);
+});
 
 loadnews("breaking-news", "in", "en");
