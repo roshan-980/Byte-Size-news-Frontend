@@ -205,7 +205,12 @@ function closeModal() {
 }
 
 // ================= LOGIN MODAL =================
-document.getElementById("loginBtn").addEventListener("click", () => {
+document.getElementById("loginBtn").addEventListener("click", async() => {
+    const res  = await fetch(`${BASE_URL}/auth/verifytoken`, { credentials: "include" });
+    if (res.ok) {
+        alert("You are already logged in!");
+        return;
+    }
     resetModal();
     modal.style.display = "flex";
     news.classList.add("blur-bg");
