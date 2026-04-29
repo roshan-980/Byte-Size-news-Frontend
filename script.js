@@ -11,10 +11,12 @@ const btn = form.querySelector(".submit-btn");
 const toggleText = document.querySelector(".toggle-text");
 const passwordRules = document.getElementById("passwordRules");
 
-const savedLang = localStorage.getItem("language");
-    if (savedLang) {
-        document.getElementById("Language").value = savedLang;
-    }
+window.addEventListener("DOMContentLoaded", () => {
+  const savedLang = localStorage.getItem("language");
+  if (savedLang) {
+    document.getElementById("Language").value = savedLang;
+  }
+});
 
 let currentStep = "form";
 let tempEmail = "";
