@@ -551,7 +551,7 @@ async function loadnews(topic, country, lang) {
 
                 // CASE 2: External TTS
                 try {
-                    alert("Current version is not able to play audio. We are working on it and it will be available in the next update. Stay tuned!");
+                    alert("Currently not available !");
                 //     const ttsRes = await fetch(`${BASE_URL}/tts`, {
                 //         method: "POST",
                 //         headers: { "Content-Type": "application/json" },
