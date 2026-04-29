@@ -16,7 +16,8 @@ window.addEventListener("DOMContentLoaded", () => {
   if (savedLang) {
     document.getElementById("Language").value = savedLang;
     langvar = savedLang;
-  }
+    }
+    loadnews("breaking-news", "in", langvar);
 });
 
 let currentStep = "form";
@@ -639,4 +640,4 @@ languageSelect.addEventListener("change", function () {
     loadnews("breaking-news", "in", selectedLang);
 });
 
-loadnews("breaking-news", "in", langvar);
+// loadnews("breaking-news", "in", "en");
