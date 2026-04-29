@@ -10,11 +10,12 @@ const button = form.querySelector("button");
 const btn = form.querySelector(".submit-btn");
 const toggleText = document.querySelector(".toggle-text");
 const passwordRules = document.getElementById("passwordRules");
-
+let langvar  = "en";
 window.addEventListener("DOMContentLoaded", () => {
   const savedLang = localStorage.getItem("language");
   if (savedLang) {
     document.getElementById("Language").value = savedLang;
+    langvar = savedLang;
   }
 });
 
@@ -634,8 +635,8 @@ const languageSelect = document.getElementById("Language");
 languageSelect.addEventListener("change", function () {
     const selectedLang = this.value;
     // Save in localStorage
-    localStorage.setItem("lang", selectedLang);
+    localStorage.setItem("language", selectedLang);
     loadnews("breaking-news", "in", selectedLang);
 });
 
-loadnews("breaking-news", "in", "en");
+loadnews("breaking-news", "in", langvar);
